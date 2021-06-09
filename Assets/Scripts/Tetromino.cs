@@ -9,6 +9,7 @@ public class Tetromino : MonoBehaviour {
         // Default position not valid? Then it's game over
         if (!isValidGridPos()) {
             GameStateManager.GameOver();
+            FindObjectOfType<AudioManager>().Play("GameOver");
             Debug.Log("GAME OVER");
             Destroy(gameObject);
         }
@@ -46,6 +47,7 @@ public class Tetromino : MonoBehaviour {
         // Rotate
         else if (Input.GetKeyDown(KeyCode.UpArrow)) {
             transform.Rotate(0, 0, -90);
+            FindObjectOfType<AudioManager>().Play("Rotate");
             
             // See if valid
             if (isValidGridPos())
@@ -80,6 +82,7 @@ public class Tetromino : MonoBehaviour {
                 enabled = false;
             }
 
+            FindObjectOfType<AudioManager>().Play("Fall");
             lastFall = Time.time;
         }
     }

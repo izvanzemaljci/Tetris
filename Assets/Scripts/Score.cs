@@ -5,17 +5,14 @@ using UnityEngine.UI;
 
 public class Score : MonoBehaviour
 {
-    private static int score = 0;
+    private static int score;
     [SerializeField]
     Text text = default;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    
+    private void Awake() {
+        score = 0;
     }
 
-    // Update is called once per frame
     void Update()
     {
         text.text = score.ToString();
