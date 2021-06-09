@@ -8,18 +8,6 @@ public class TetrisGrid : MonoBehaviour
     public static int h = 24;
     public static Transform[,] grid = new Transform[w,h];
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public static Vector2 roundVec2(Vector2 v) {
         return new Vector2(Mathf.Round(v.x),
                         Mathf.Round(v.y));
@@ -71,6 +59,7 @@ public class TetrisGrid : MonoBehaviour
                 decreaseRowsAbove(y+1);
                 --y;
                 x++;
+                FindObjectOfType<AudioManager>().Play("Clear");
             }
         }
 
