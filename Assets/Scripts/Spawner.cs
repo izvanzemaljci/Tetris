@@ -1,14 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class Spawner : MonoBehaviour
 {
     [SerializeField]
     private GameObject[] tetrominoes = default;
+    [SerializeField]
+    private SpriteRenderer preview = default;
+    private int random = 0;
 
     void Start()
     {
+        random = Random.Range(0, tetrominoes.Length);
         Spawn();
     }
 
@@ -17,12 +22,21 @@ public class Spawner : MonoBehaviour
         
     }
 
-    void Spawn()
+    public void Spawn()
     {
-        int i = Random.Range(0, tetrominoes.Length);
+        int nextRandom = Random.Range(0, tetrominoes.Length);
 
-        Instantiate(tetrominoes[i],
+        Preview(nextRandom);
+
+        Instantiate(tetrominoes[random],
                 transform.position,
                 Quaternion.identity);
+
+        random = nextRandom;
+    }
+
+    public void Preview(int i) 
+    {
+        preview.sprite = tetrominoes[i].GetComponent<SpriteRenderer>().sprite;
     }
 }
